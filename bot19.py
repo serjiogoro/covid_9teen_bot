@@ -12,7 +12,7 @@ def get_wiki_table_df(page_url, match_string):
     return df
 
     def get_wiki():
-    url = ('https://en.wikipedia.org/wiki/') 
+    url = ('https://ru.wikipedia.org/wiki/COVID-19') 
     df = utils.get_wiki_table_df(url, 'Locations[b]')
     df = pd.DataFrame(
         df.values[:, 1:5], 
