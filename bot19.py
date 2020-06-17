@@ -1,12 +1,8 @@
 import wikipedia
 
-print wikipedia.summary ("Wikipedia")
+# print wikipedia.summary ("Wikipedia")
 
 
-def get_wiki_covid(page_url):
-    covid = wikipedia.page("Covid-19")
-    covid.title
-    covid.url = ('https://ru.wikipedia.org/wiki/COVID-19') 
-    covid.content
-    covid.links[0]
-    
+def get_wiki_covid(Пандемия_Covid_19):
+    covid = wikipedia.page("Пандемия_Covid_19")
+    return {'title': covid.title, 'description': covid.content, 'url':covid.url}
