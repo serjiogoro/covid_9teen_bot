@@ -9,6 +9,11 @@ def main_keyboard():
                                 [KeyboardButton('О вирусе')]
                                 ])
 
+def meri_keyboard():
+    return ReplyKeyboardMarkup([[KeyboardButton('Показать все')],
+                                [KeyboardButton('Назад')]
+                                ])
+
 def stat_keyboard():
     return ReplyKeyboardMarkup([[KeyboardButton('РФ')],
                                 [KeyboardButton('Весь мир')],
