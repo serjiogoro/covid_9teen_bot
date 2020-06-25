@@ -13,17 +13,28 @@ class ParserNews:
         pic = []
         for element in s:
             pic.append(element.get("src"))
-        h = soup.find_all("title")
+       
+        return pic
+
+    def get_info1(self):
+        url = 'https://covid19.rosminzdrav.ru/news/'
+        req = requests.get(url).text
+        soup = BeautifulSoup(req, 'html.parser')        
+        h = soup.find_all('a')
         head = []
         for element in h:
             head.append(element.get("href")) 
-        t = soup.find_all("time")
-        time = []
-        for element in t:
-            time.append(element.get("time"))
+        return head
+    # def get_info2(self):
+    #     url = 'https://covid19.rosminzdrav.ru/news/'
+    #     req = requests.get(url).text
+    #     soup = BeautifulSoup(req, 'html.parser')        
+    #     t = soup.find_all('time')
+    #     time = []
+    #     for element in t:
+    #         time.append(element.get("time"))
              
-
-        return pic, head, time   
+    #     return time   
         
 
 
@@ -31,9 +42,9 @@ class ParserNews:
 if __name__ == "__main__":
     ParserCov = ParserNews() 
     pic = ParserCov.get_info() 
-    head = ParserCov.get_info()
-    time = ParserCov.get_info()
-    print(pic, head, time) 
+    head = ParserCov.get_info1()
+    # time = ParserCov.get_info2()
+    print(pic, head) 
       
 
 
