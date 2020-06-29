@@ -50,21 +50,23 @@ class ParserNews:
             heading.append(element.get("title"))
 
         return heading    
-    def get_samll_cards(self):
+    def get_small_cards(self):
         small_cards = []
-        time_array = time
-        href_array = head
-        image_array = pic
-        title_array = heading
+        time_array = self.get_time()
+        href_array = self.get_href()
+        image_array = self.get_img()
+        title_array = self.get_heading()
 
         for title, href, image, time in zip (title_array, href_array, image_array, time_array):
             one_card = {}
-            one_card['title'] = title
+            one_card['title'] = heading
             one_card['image'] = image
             one_card['href'] = href
             one_card['time'] = time
 
-            # one_card [{'title':,'image':,'href':,'time':}, {}, {}]
+            small_cards = one_card
+
+            # one_card[{'title':,'image':,'href':,'time':}, {}, {}]
 
             return small_cards
 
@@ -78,7 +80,7 @@ if __name__ == "__main__":
     head = ParserCov.get_href()
     time = ParserCov.get_time()
     heading = ParserCov.get_heading()
-    small_cards = ParserCov.get_samll_cards()
+    small_cards = ParserCov.get_small_cards()
     print(small_cards)
     # print(pic, head, time, heading) 
       
