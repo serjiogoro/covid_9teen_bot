@@ -2,16 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 
 class ParserNews:
-    def __init__(self):
-        self.url = 'https://covid19.rosminzdrav.ru/news/' 
+    def __init__(self): 
         self.url = 'https://covid19.rosminzdrav.ru/news/'
         self.req = requests.get(self.url).text
         self.soup = BeautifulSoup(self.req, 'html.parser')
 
     def get_img(self):
-        # url = 'https://covid19.rosminzdrav.ru/news/'
-        # req = requests.get(url).text
-        # soup = BeautifulSoup(req, 'html.parser')
         s = self.soup.find_all("img")
         pic = []
         for element in s:
@@ -19,20 +15,14 @@ class ParserNews:
        
         return pic
 
-    def get_href(self):
-        # url = 'https://covid19.rosminzdrav.ru/news/'
-        # req = requests.get(url).text
-        # soup = BeautifulSoup(req, 'html.parser')        
+    def get_href(self):        
         h = self.soup.find_all('a')
         head = []
         for element in h:
             head.append(element.get("href")) 
         return head
 
-    def get_time(self):
-        # url = 'https://covid19.rosminzdrav.ru/news/'
-        # req = requests.get(url).text
-        # soup = BeautifulSoup(req, 'html.parser')       
+    def get_time(self):      
         t = self.soup.find_all('time')
         time = []
         for element in t:
@@ -41,9 +31,6 @@ class ParserNews:
         return time   
         
     def get_heading(self):
-        # url = 'https://covid19.rosminzdrav.ru/news/' 
-        # req = requests.get(url).text
-        # soup = BeautifulSoup(req, 'html.parser')
         ttl = self.soup.find_all('a')
         heading = []
         for element in ttl:
@@ -67,8 +54,6 @@ class ParserNews:
 
             small_cards = one_card
 
-            # one_card[{'title':,'image':,'href':,'time':}, {}, {}]
-
         return small_cards
 
 
@@ -83,7 +68,7 @@ if __name__ == "__main__":
     heading = ParserCov.get_heading()
     small_cards = ParserCov.get_small_cards()
     print(small_cards)
-    # print(pic, head, time, heading) 
+
       
 
 
