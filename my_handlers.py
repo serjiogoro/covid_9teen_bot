@@ -1,5 +1,6 @@
 
 from my_utils import main_keyboard, stat_keyboard, karantin_keyboard, que_en_mundo_keyboard, meri_keyboard
+import bot19
 
 def greet_user(update, context):
     update.message.reply_text('Меню', reply_markup=main_keyboard())
@@ -27,6 +28,10 @@ def meri_all(update, context):
     with myFile:
         for c in range(27):
             update.message.reply_text(myFile.readline(), reply_markup=main_keyboard())
+
+def wiki(update, context):
+    #res = bot19.get_wiki_covid(dummy)
+    update.message.reply_text('title', reply_markup=main_keyboard())
 
 def error_callback(update, error):
     try:
