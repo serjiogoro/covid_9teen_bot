@@ -31,3 +31,6 @@ def que_en_mundo_keyboard():
                                 [KeyboardButton('Страны в изоляции')],
                                 [KeyboardButton('Назад/')]
                                 ])
+def news_keyboard():
+    return ReplyKeyboardMarkup([[KeyboardButton('<-'), KeyboardButton('Вверх'), KeyboardButton('->')]
+                                ])

@@ -47,13 +47,13 @@ class ParserNews:
         
         
 
-        for heading, href, image, time in zip (title_array, href_array, image_array, time_array,):
+        for heading, href, image, time in zip (title_array, href_array, image_array, time_array):
             one_card = {}
             one_card['title'] = heading
             one_card['image'] = image
             one_card['href'] = href
             one_card['time'] = time
-            one_card['descr'] = descr
+            #one_card['descr'] = descr
 
             small_cards.append(one_card)
 
