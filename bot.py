@@ -1,7 +1,7 @@
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import settings
-from my_handlers import greet_user, error_callback, stat, back, karantin, en_mmundo, meri, meri_all, wiki, news, news_back, news_forward
+from my_handlers import greet_user, error_callback, stat, back, karantin, en_mmundo, meri, meri_all, wiki, news, news_back, news_forward, stat_rf, stat_wrld
 
 def main():
     PROXY = {'proxy_url': settings.PROXY_URL, 'urllib3_proxy_kwargs': {'username': settings.PROXY_USERNAME, 'password': settings.PROXY_PASSWORD}}
@@ -23,6 +23,8 @@ def main():
     dp.add_handler(MessageHandler(Filters.regex('^(Вверх)$'), en_mmundo))
     dp.add_handler(MessageHandler(Filters.regex('^(<-)$'), news_back))
     dp.add_handler(MessageHandler(Filters.regex('^(->)$'), news_forward))
+    dp.add_handler(MessageHandler(Filters.regex('^(РФ)$'), stat_rf))
+    dp.add_handler(MessageHandler(Filters.regex('^(Весь мир)$'), stat_wrld))
     dp.add_error_handler(error_callback)
 
     logging.info("Bot has just started")

@@ -53,26 +53,10 @@ class ParserNews:
             one_card['image'] = image
             one_card['href'] = href
             one_card['time'] = time
-            #one_card['descr'] = descr
 
             small_cards.append(one_card)
 
         return small_cards
-
-    def get_descr(self):
-        # url = 'https://covid19.rosminzdrav.ru/news/'
-        # soup = BeautifulSoup(url, 'html.parser')
-        tmp = self.soup.find_all('body')
-        descr = []
-        for element in tmp:
-            descr.append(element.text)
-
-        return descr
-
-
-
-
-
 
 if __name__ == "__main__":
     ParserCov = ParserNews() 
@@ -80,7 +64,6 @@ if __name__ == "__main__":
     head = ParserCov.get_href()
     time = ParserCov.get_time()
     heading = ParserCov.get_heading()
-    descr = ParserCov.get_descr()
     small_cards = ParserCov.get_small_cards()
     print(small_cards)
 
