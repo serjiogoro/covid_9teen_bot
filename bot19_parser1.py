@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 class ParserNews:
     def __init__(self): 
@@ -49,6 +50,7 @@ class ParserNews:
 
         for heading, href, image, time in zip (title_array, href_array, image_array, time_array,):
             one_card = {}
+            descr = self.get_descr(href)
             one_card['title'] = heading
             one_card['image'] = image
             one_card['href'] = href
@@ -59,13 +61,19 @@ class ParserNews:
 
         return small_cards
 
-    def get_descr(self):
-        # url = 'https://covid19.rosminzdrav.ru/news/'
-        # soup = BeautifulSoup(url, 'html.parser')
-        tmp = self.soup.find_all('body')
-        descr = []
-        for element in tmp:
-            descr.append(element.text)
+    # def get_descr(self, url):
+    #     tmp = self.soup.find_all('body')
+    #     descr = []
+    #     # descr.replace("\n>1","")
+    #     for element in tmp:
+    #         descr.append(element.text)
+
+    def get_descr(self,url):
+        # result = url.split.replace("\n">1, "\n"=1)
+        soup = BeautifulSoup(requests.get(url).text, 'html.parser')
+        tmp = soup.find_all('body')
+        descr = tmp[0].text
+        descr = re.sub(r'\n+','\n',descr)
 
         return descr
 
@@ -80,7 +88,7 @@ if __name__ == "__main__":
     head = ParserCov.get_href()
     time = ParserCov.get_time()
     heading = ParserCov.get_heading()
-    descr = ParserCov.get_descr()
+    descr = ParserCov.get_descr(url='https://covid19.rosminzdrav.ru/minzdrav-rossii-napravit-speczialistov-v-tyvu-v-svyazi-so-vspyshkoj-covid-19/')
     small_cards = ParserCov.get_small_cards()
     print(small_cards)
 
