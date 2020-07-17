@@ -45,8 +45,6 @@ class ParserNews:
         href_array = self.get_href()
         image_array = self.get_img()
         title_array = self.get_heading()
-        
-        
 
         for heading, href, image, time in zip (title_array, href_array, image_array, time_array,):
             one_card = {}
@@ -61,15 +59,7 @@ class ParserNews:
 
         return small_cards
 
-    # def get_descr(self, url):
-    #     tmp = self.soup.find_all('body')
-    #     descr = []
-    #     # descr.replace("\n>1","")
-    #     for element in tmp:
-    #         descr.append(element.text)
-
     def get_descr(self,url):
-        # result = url.split.replace("\n">1, "\n"=1)
         soup = BeautifulSoup(requests.get(url).text, 'html.parser')
         tmp = soup.find_all('body')
         descr = tmp[0].text

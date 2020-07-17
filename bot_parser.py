@@ -9,6 +9,7 @@ class  C1maps:
         self.s = ''
         self.file = file
     def get_data(self):
+        result = {}
         vgm_url = 'https://1maps.ru/statistika-koronavirusa-v-rossii-i-mire-na-19-maya-2020-na-segodnyashnij-den/'
         html_text = requests.get(vgm_url).text
         soup = BeautifulSoup(html_text, 'html.parser')
@@ -24,14 +25,13 @@ class  C1maps:
                         self.s += f",{td.text[1:]}\n"
                     self.dos+=1
                     if self.dos == 4:
-                        print(self.s.result)
+                        result[self.s.split(",")[0]] = self.s.split(",")[1].replace("\n","")
+                        # print(self.s.result)
                         # myFile.write(self.s)
                         self.dos = 0
-                        # self.s1 = result[city_name]
-                        # self.s2 = result[city_count]
-                        # self.s = ''
                         
-                    return result
+                        
+            return result
 
     def get_data2(self):
         result = {}
@@ -53,18 +53,10 @@ class  C1maps:
                             self.s += f",{td.text.replace(',','')}\n"
                     self.dos+=1
                     if self.dos == 6:
-                        # print(self.s)
                         if self.s.find('Итого'):
-                            # print(self.s)
-                            # myFile.write(self.s)
-                        
                             result[self.s.split(",")[0]] = self.s.split(",")[1].replace("\n","")
                         self.dos = 0
-                        # s1 = ['city_name']
-                        # s2 = ['city_count']
                         
-                        # self.s = ''
-                        # result.append()
                         
             return result
         
